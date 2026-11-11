@@ -1,0 +1,10 @@
+{
+  "title": "Your daily news digest",
+  "sections": ["global", "tech", "financial"],
+  "per_section": 5,
+  "watchlist": [
+    {"q": "OpenAI"},
+    {"q": "electric vehicles", "country": "US"},
+    {"q": "interest rates", "country": "GB"}
+  ]
+}
