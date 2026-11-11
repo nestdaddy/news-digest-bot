@@ -1,0 +1,58 @@
+name: daily-digest
+
+on:
+  schedule:
+    - cron: "0 7 * * *"   # 07:00 UTC every day; change to your time zone
+  workflow_dispatch:       # "Run workflow" button for a manual test
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-digest
+  cancel-in-progress: false
+
+jobs:
+  send:
+    # Runs in your copy of the template, not in the template repo itself
+    if: github.repository != 'nestdaddy/news-digest-bot'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      # Remember which stories were already sent (kept between runs in the Actions cache)
+      - name: Restore sent-stories list
+        uses: actions/cache/restore@v4
+        with:
+          path: state
+          key: seen-${{ github.run_id }}
+          restore-keys: seen-
+
+      - name: Send digest
+        run: python digest.py
+        env:
+          NESTDADDY_KEY: ${{ secrets.NESTDADDY_KEY }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
+          SMTP_TO: ${{ secrets.SMTP_TO }}
+
+      - name: Save sent-stories list
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: state
+          key: seen-${{ github.run_id }}
