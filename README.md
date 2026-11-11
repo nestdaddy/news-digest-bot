@@ -73,7 +73,7 @@ Create a Slack app, turn on **Incoming Webhooks**, add one for your channel and 
 | `sections` | Any of `global` (world), `tech`, `financial` (markets, crypto, economy). Use `[]` for alerts only. |
 | `per_section` | Stories per section and per alert, 1 to 50. |
 | `watchlist[].q` | Key words to search in the last 24 hours of news (2 to 200 characters). |
-| `watchlist[].country` | Optional two-letter country code (US, GB, DE, FR, JP, AU, SG and more). Leave it out to search every country. |
+| `watchlist[].country` | Optional two-letter country code, for example US, GB or SG. Leave it out to search every country. |
 
 The config is checked on start, and a clear error is printed if something is wrong.
 
