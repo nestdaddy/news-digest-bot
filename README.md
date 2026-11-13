@@ -24,7 +24,7 @@ ALERT: ELECTRIC VEHICLES (US)
 - ...
 ```
 
-News comes from the [NestDaddy News API](https://nestdaddy.com/apis): headlines and news search across 45+ countries, returned as JSON.
+News comes from the [NestDaddy News API](https://nestdaddy.com/apis): real-time headlines and news search from around the world, returned as JSON.
 
 ## Quick start (GitHub Actions, about 5 minutes)
 
