@@ -225,7 +225,7 @@ def main(argv: list[str]) -> int:
     dry_run = "--dry-run" in argv
     key = os.environ.get("NESTDADDY_KEY")
     if not key:
-        print("NESTDADDY_KEY is not set. Get a key (free 7-day trial) at https://nestdaddy.com/mcp",
+        print("NESTDADDY_KEY is not set. Get a free key (1,000 calls a month) at https://nestdaddy.com/mcp",
               file=sys.stderr)
         return 2
     targets = channels()

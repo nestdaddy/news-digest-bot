@@ -29,7 +29,7 @@ News comes from the [NestDaddy News API](https://nestdaddy.com/apis): real-time 
 ## Quick start (GitHub Actions, about 5 minutes)
 
 1. Click **Use this template** at the top of this page and create your own copy.
-2. Get a NestDaddy API key at [nestdaddy.com/mcp](https://nestdaddy.com/mcp) (free 7-day trial). The bot uses about 6 calls a day.
+2. Get a NestDaddy API key at [nestdaddy.com/mcp](https://nestdaddy.com/mcp) (the Free plan gives 1,000 calls a month, no card). The bot uses about 6 calls a day.
 3. In your copy, open **Settings > Secrets and variables > Actions** and add:
    - `NESTDADDY_KEY`
    - and at least one channel:
